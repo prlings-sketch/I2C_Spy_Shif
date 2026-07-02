@@ -3,6 +3,8 @@
 An efficient hardware-assisted I2C sniffing tool. This project connects the Serial Data line (SDA) of a 24C02 EEPROM directly to the Data Input of a 74HC595 shift register. The Arduino Uno acts as the intelligent controller, monitoring the I2C clock and pulsing the shift register clocks to achieve direct serial-to-parallel conversion without data buffering delays.
 
 ## Hardware Wiring Diagram
+![Circuit Diagram](circuit_diagram.png)
+
 
 | Arduino Uno Pin | 24C02 EEPROM Pin | 74HC595 Shift Register Pin | Function |
 | :--- | :--- | :--- | :--- |
