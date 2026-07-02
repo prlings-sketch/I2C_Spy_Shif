@@ -39,3 +39,23 @@ The Arduino Uno does not process or pass the data bits. Instead, it acts as a **
 ### Why this method is superior:
 * **Zero Software Latency:** The data is already physically present inside the shift register's input stage before the Arduino even processes a loop, preventing dropped bits.
 * **Processor Efficiency:** The Uno only handles basic timing and counting rather than heavy memory management.
+* ## 7-Segment Display Output Decoding
+
+To visually verify the parallel output data coming out of the 74HC595 shift register, a standard common-anode or common-cathode 7-segment display is connected to pins Q0–Q7.
+
+### Hardware Mapping
+The parallel outputs of the shift register map to the individual LED segments (a through g) of the display as follows:
+* **Q0** -> Segment **a**
+* **Q1** -> Segment **b**
+* **Q2** -> Segment **c**
+* **Q3** -> Segment **d**
+* **Q4** -> Segment **e**
+* **Q5** -> Segment **f**
+* **Q6** -> Segment **g**
+* **Q7** -> Decimal Point (**dp**)
+
+*Note: A 390Ω current-limiting resistor is placed on the common pin of the display to protect the hardware from overcurrent.*
+
+### Software Behavior
+Inside the provided Arduino sketch, the timing logic tracks the exact 8 SCL transitions representing a data byte on the I2C bus. Once a full valid frame is captured, the Uno triggers the Latch pin (Pin 10). This instantly updates the shift register outputs, lighting up the corresponding segments on the display to show the live data byte passing through the bus.
+
